@@ -6,32 +6,32 @@
       </tr>
       <tr>
         <td>C</td>
-        <td>D</td>
-        <td>%</td>
-        <td>d</td>
+        <td>&LeftTriangleBar;</td>
+        <td>&percnt;</td>
+        <td>&divide;</td>
       </tr>
       <tr>
         <td>7</td>
         <td>8</td>
         <td>9</td>
-        <td>x</td>
+        <td>&Cross;</td>
       </tr>
       <tr>
         <td>4</td>
         <td>5</td>
         <td>6</td>
-        <td>-</td>
+        <td>&minus;</td>
       </tr>
       <tr>
         <td>1</td>
         <td>2</td>
         <td>3</td>
-        <td>+</td>
+        <td>&plus;</td>
       </tr>
       <tr>
         <td colspan="2">0</td>
         <td>.</td>
-        <td>=</td>
+        <td>&equals;</td>
       </tr>
     </table>
   </div>
