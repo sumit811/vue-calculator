@@ -2,6 +2,9 @@
   <div class="hello">
     <table>
       <tr>
+        <td colspan="4" class="title" >{{msg}}</td>
+      </tr>
+      <tr>
         <td colspan="4" class="output">{{output}}</td>
       </tr>
       <tr>
@@ -89,6 +92,13 @@ table{
     &:not(.output){
       cursor: pointer;
     }
+  }
+  .title{
+    border: 0 none;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 0;
+    text-decoration: underline;
   }
   .output{
     background: rgba(0, 0, 0, 0.8);
