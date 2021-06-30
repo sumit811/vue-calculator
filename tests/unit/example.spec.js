@@ -1,22 +1,24 @@
 import { shallowMount } from '@vue/test-utils'
 import Calculator from '@/components/Calculator.vue'
 
+const wrapper = shallowMount(Calculator)
+
 describe('Calculator.vue', () => {
-  //console.dir(Calculator);
-  // it('renders props.msg when passed', () => {
-  //   const msg = 'new message'
-  //   const wrapper = shallowMount(Calculator, {
-  //     propsData: { msg }
-  //   })
-  //   expect(wrapper.text()).toMatch(msg)
-  // }),
   it('renders correctly', () => {
-    const wrapper = shallowMount(Calculator)
-    expect(wrapper.element).toMatchSnapshot()
+    //const wrapper = shallowMount(Calculator)
+    expect(wrapper.element).toMatchSnapshot();
   })
-  // test('digit & calc button clicked',() =>{
-  //   const wrapper = shallowMount(Calculator)
-  //   //wrapper.find('.digitbtn').trigger.click();
-  //   console.dir(wrapper);
-  // })
+  it('Output should be 0 after clicking clear button',()=>{
+    wrapper.vm.clear();
+    expect(wrapper.vm.output).toBe(0);
+  })
+  
 })
+
+// describe('Output should be 0 after clicking clear button',() => {
+//   wrapper.vm.clear();
+//   // console.log(wrapper.vm.output,typeof wrapper.vm.output);
+//   expect(wrapper.vm.output).toBe(0);
+// })
+
+wrapper.destroy()
