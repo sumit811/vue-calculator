@@ -5,7 +5,7 @@
         <td colspan="4" class="title" >{{msg}}</td>
       </tr>
       <tr>
-        <td colspan="4" class="output">{{output}}</td>
+        <td colspan="4" class="js-output">{{output}}</td>
       </tr>
       <tr>
         <td class="clear" v-on:click="clear">C</td>
@@ -14,25 +14,25 @@
         <td  v-on:click="calc('/')">&divide;</td>
       </tr>
       <tr>
-        <td class="digitBtn" v-on:click="edigit('7')">7</td>
-        <td class="digitBtn" v-on:click="edigit('8')">8</td>
-        <td class="digitBtn" v-on:click="edigit('9')">9</td>
-        <td  v-on:click="calc('x')">&Cross;</td>
+        <td class="js-digitBtn-7" v-on:click="edigit('7')">7</td>
+        <td class="js-digitBtn-8" v-on:click="edigit('8')">8</td>
+        <td class="js-digitBtn-9" v-on:click="edigit('9')">9</td>
+        <td class="js-calcBtn-x" v-on:click="calc('x')">&Cross;</td>
       </tr>
       <tr>
-        <td class="digitBtn" v-on:click="edigit('4')">4</td>
-        <td class="digitBtn" v-on:click="edigit('5')">5</td>
-        <td class="digitBtn" v-on:click="edigit('6')">6</td>
+        <td class="js-digitBtn-4" v-on:click="edigit('4')">4</td>
+        <td class="js-digitBtn-5" v-on:click="edigit('5')">5</td>
+        <td class="js-digitBtn-6" v-on:click="edigit('6')">6</td>
         <td  v-on:click="calc('-')">&minus;</td>
       </tr>
       <tr>
-        <td class="digitBtn" v-on:click="edigit('1')">1</td>
-        <td class="digitBtn" v-on:click="edigit('2')">2</td>
-        <td class="digitBtn" v-on:click="edigit('3')">3</td>
+        <td class="js-digitBtn-1" v-on:click="edigit('1')">1</td>
+        <td class="js-digitBtn-2" v-on:click="edigit('2')">2</td>
+        <td class="js-digitBtn-3" v-on:click="edigit('3')">3</td>
         <td v-on:click="calc('+')">&plus;</td>
       </tr>
       <tr>
-        <td class="digitBtn"  v-on:click="edigit('0')" colspan="2">0</td>
+        <td class="js-digitBtn-4"  v-on:click="edigit('0')" colspan="2">0</td>
         <td v-on:click="edigit('.')">.</td>
         <td v-on:click="result">&equals;</td>
       </tr>
@@ -48,14 +48,17 @@ export default {
   },
   data(){
     return{
-      output:0
+      output:'0'
     }
   },
   methods:{
     result:function(){
       // debugger
-      this.output = this.output.replace('x','*').replace('%','/100');
-      this.output = eval(this.output);
+      console.log(this.output,typeof this.output,this.output.length);
+      if(typeof this.output !=='undefined' && (this.output.indexOf('x')!==-1 || this.output.indexOf('%')!==-1)){
+        this.output = this.output.replace('x','*').replace('%','/100');
+      }
+      this.output = eval(this.output).toString();
     },
     calc:function(c){
       console.log('calculation-',c);
