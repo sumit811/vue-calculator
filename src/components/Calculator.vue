@@ -53,29 +53,28 @@ export default {
   },
   methods:{
     result:function(){
-      // debugger
-      console.log(this.output,typeof this.output,this.output.length);
+      // console.log(this.output,typeof this.output,this.output.length);
       if(typeof this.output !=='undefined' && (this.output.indexOf('x')!==-1 || this.output.indexOf('%')!==-1)){
         this.output = this.output.replace('x','*').replace('%','/100');
       }
       this.output = eval(this.output).toString();
     },
     calc:function(c){
-      console.log('calculation-',c);
+      // console.log('calculation-',c);
       this.output = this.output==0?this.output:(this.output+c); 
     },
     clear:function(){
       this.output = 0;
     },
     dele:function(){
-      console.log('this.output.length',this.output.length);
+      // console.log('this.output.length',this.output.length);
       this.output = this.output==0?0:this.output.slice(0,-1);
       if(this.output.length===0){
         this.output=0;
       }
     },
     edigit: function(d){
-      console.log(d,typeof d);
+      // console.log(d,typeof d);
       this.output = this.output==0?d:this.output+d;
     }
   }

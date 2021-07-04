@@ -3,10 +3,12 @@ import Calculator from '@/components/Calculator.vue'
 
 
 describe('Calculator.vue', () => {
-  /*it('renders correctly', () => {
-    //const wrapper = shallowMount(Calculator)
+  it('renders correctly', () => {
+    const wrapper = shallowMount(Calculator)
     expect(wrapper.element).toMatchSnapshot();
-  })*/
+    wrapper.destroy()
+
+  })
   test('Calculator app present',()=>{
     const wrapper = shallowMount(Calculator)
     expect(wrapper.is(Calculator)).toBe(true)
@@ -48,18 +50,11 @@ describe('Calculator.vue', () => {
     wrapper.find('.js-digitBtn-6').trigger('click');
     await wrapper.vm.result();
     expect(wrapper.find('.js-output').exists()).toBe(true)
-    console.log('js-output',wrapper.find('.js-output').text());
-    //wrapper.setData({ output: wrapper.vm.output })
+    // console.log('js-output',wrapper.find('.js-output').text());
     await wrapper.vm.$nextTick();
-    console.log('js-output',wrapper.find('.js-output').text());
+    // console.log('js-output',wrapper.find('.js-output').text());
     expect(wrapper.find('.js-output').text()).toEqual('270');
     // expect(wrapper.find('.js-output').text()).toEqual('270');
     wrapper.destroy()
   })
 })
-
-// describe('Output should be 0 after clicking clear button',() => {
-//   wrapper.vm.clear();
-//   // console.log(wrapper.vm.output,typeof wrapper.vm.output);
-//   expect(wrapper.vm.output).toBe(0);
-// })
