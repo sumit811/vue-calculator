@@ -8,32 +8,32 @@
         <td colspan="4" class="output">{{output}}</td>
       </tr>
       <tr>
-        <td v-on:click="clear">C</td>
-        <td v-on:click="dele">&LeftTriangleBar;</td>
-        <td v-on:click="calc('%')">&percnt;</td>
-        <td v-on:click="calc('/')">&divide;</td>
+        <td class="clear" v-on:click="clear">C</td>
+        <td class="delBtn" v-on:click="dele">&LeftTriangleBar;</td>
+        <td  v-on:click="calc('%')">&percnt;</td>
+        <td  v-on:click="calc('/')">&divide;</td>
       </tr>
       <tr>
-        <td v-on:click="edigit('7')">7</td>
-        <td v-on:click="edigit('8')">8</td>
-        <td v-on:click="edigit('9')">9</td>
-        <td v-on:click="calc('x')">&Cross;</td>
+        <td class="digitBtn" v-on:click="edigit('7')">7</td>
+        <td class="digitBtn" v-on:click="edigit('8')">8</td>
+        <td class="digitBtn" v-on:click="edigit('9')">9</td>
+        <td  v-on:click="calc('x')">&Cross;</td>
       </tr>
       <tr>
-        <td v-on:click="edigit('4')">4</td>
-        <td v-on:click="edigit('5')">5</td>
-        <td v-on:click="edigit('6')">6</td>
-        <td v-on:click="calc('-')">&minus;</td>
+        <td class="digitBtn" v-on:click="edigit('4')">4</td>
+        <td class="digitBtn" v-on:click="edigit('5')">5</td>
+        <td class="digitBtn" v-on:click="edigit('6')">6</td>
+        <td  v-on:click="calc('-')">&minus;</td>
       </tr>
       <tr>
-        <td v-on:click="edigit('1')">1</td>
-        <td v-on:click="edigit('2')">2</td>
-        <td v-on:click="edigit('3')">3</td>
+        <td class="digitBtn" v-on:click="edigit('1')">1</td>
+        <td class="digitBtn" v-on:click="edigit('2')">2</td>
+        <td class="digitBtn" v-on:click="edigit('3')">3</td>
         <td v-on:click="calc('+')">&plus;</td>
       </tr>
       <tr>
-        <td v-on:click="edigit('0')" colspan="2">0</td>
-        <td>.</td>
+        <td class="digitBtn"  v-on:click="edigit('0')" colspan="2">0</td>
+        <td v-on:click="edigit('.')">.</td>
         <td v-on:click="result">&equals;</td>
       </tr>
     </table>
@@ -65,6 +65,7 @@ export default {
       this.output = 0;
     },
     dele:function(){
+      console.log('this.output.length',this.output.length);
       this.output = this.output==0?0:this.output.slice(0,-1);
       if(this.output.length===0){
         this.output=0;
