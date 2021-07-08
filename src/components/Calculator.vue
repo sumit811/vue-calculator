@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <table>
+    <table class="table-auto">
       <tr>
         <td colspan="4" class="title" >{{msg}}</td>
       </tr>
@@ -85,9 +85,9 @@ export default {
 <style scoped lang="scss">
 table{
   margin: auto;
-  width: 240px;
+  width: 250px;
   // border-radius: 10px;
-  overflow: hidden;
+  // overflow: hidden;
   border-collapse: collapse;
   td{
     border: 1px solid rgba(0,0,0,0.8);
