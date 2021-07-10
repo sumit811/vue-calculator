@@ -1,54 +1,60 @@
 <template>
-  <div class="hello">
-    <table class="table-auto">
+  <div class="calculator">
+    <h1>{{msg}}</h1>
+    <table class="table-auto bg-gray-800 border-8 border-gray-800" cellpadding="5" cellspacing="5">
       <tr>
-        <td colspan="4" class="title" >{{msg}}</td>
+        <td colspan="4">
+          <div class="js-output h-20 text-white font-bold text-4xl flex items-end justify-end">{{output}}</div>
+        </td>
       </tr>
       <tr>
-        <td colspan="4" class="js-output">{{output}}</td>
+        <td><Calc methodTxt="clear" classtxt="clear" calctxt="/" btntxt="C" /></td>
+        <td><Calc methodTxt="dele" classtxt="delBtn" calctxt="/" btntxt="&LeftTriangleBar;" /></td>
+        <td><Calc calctxt="%" btntxt="&percnt;" /></td>
+        <td><Calc calctxt="/" btntxt="&divide;" /></td>
       </tr>
       <tr>
-        <td class="clear" v-on:click="clear">C</td>
-        <td class="delBtn" v-on:click="dele">&LeftTriangleBar;</td>
-        <td  v-on:click="calc('%')">&percnt;</td>
-        <td  v-on:click="calc('/')">&divide;</td>
+        <td><Digit btntxt="7"/></td>
+        <td><Digit btntxt="8"/></td>
+        <td><Digit btntxt="9"/></td>
+        <td><Calc btntxt="x" /></td>
       </tr>
       <tr>
-        <td class="js-digitBtn-7" v-on:click="edigit('7')">7</td>
-        <td class="js-digitBtn-8" v-on:click="edigit('8')">8</td>
-        <td class="js-digitBtn-9" v-on:click="edigit('9')">9</td>
-        <td class="js-calcBtn-x" v-on:click="calc('x')">&Cross;</td>
+        <td><Digit btntxt="4"/></td>
+        <td><Digit btntxt="5"/></td>
+        <td><Digit btntxt="6"/></td>
+        <td><Calc calctxt="-" btntxt="&minus;" /></td>
       </tr>
       <tr>
-        <td class="js-digitBtn-4" v-on:click="edigit('4')">4</td>
-        <td class="js-digitBtn-5" v-on:click="edigit('5')">5</td>
-        <td class="js-digitBtn-6" v-on:click="edigit('6')">6</td>
-        <td  v-on:click="calc('-')">&minus;</td>
+        <td><Digit btntxt="1"/></td>
+        <td><Digit btntxt="2"/></td>
+        <td><Digit btntxt="3"/></td>
+        <td><Calc calctxt="+" btntxt="&plus;" /></td>
       </tr>
       <tr>
-        <td class="js-digitBtn-1" v-on:click="edigit('1')">1</td>
-        <td class="js-digitBtn-2" v-on:click="edigit('2')">2</td>
-        <td class="js-digitBtn-3" v-on:click="edigit('3')">3</td>
-        <td v-on:click="calc('+')">&plus;</td>
-      </tr>
-      <tr>
-        <td class="js-digitBtn-4"  v-on:click="edigit('0')" colspan="2">0</td>
-        <td v-on:click="edigit('.')">.</td>
-        <td v-on:click="result">&equals;</td>
+        <td colspan="2"><Digit btntxt="0"/></td>
+        <td><Digit btntxt="&middot;"/></td>
+        <td><Calc methodTxt="result" btntxt="&equals;" /></td>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
+import Digit from './Digit.vue';
+import Calc from './Calc.vue';
 export default {
   name: 'Calculator',
   props: {
     msg: String
   },
+  components:{
+    Digit,
+    Calc
+  },
   data(){
     return{
-      output:'0'
+      output:'23980'
     }
   },
   methods:{
@@ -85,16 +91,16 @@ export default {
 <style scoped lang="scss">
 table{
   margin: auto;
-  width: 250px;
+  // width: 250px;
   // border-radius: 10px;
   // overflow: hidden;
   border-collapse: collapse;
   td{
-    border: 1px solid rgba(0,0,0,0.8);
-    height: 35px;
-    &:not(.output){
+    // border: 1px solid rgba(0,0,0,0.8);
+    // height: 35px;
+    /*&:not(.output){
       cursor: pointer;
-    }
+    }*/
   }
   .title{
     border: 0 none;
@@ -104,13 +110,14 @@ table{
     text-decoration: underline;
   }
   .output{
-    background: rgba(0, 0, 0, 0.8);
-    // border: 0 none;
+    min-height: 100px;
+    border: 1px solid #f0f;
     color: #fff;
-    height: 50px;
-    text-align: right;
-    padding: 5px;
     font-weight: bold;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    font-size: 40px;
   }
 }
 </style>
