@@ -1,40 +1,40 @@
 <template>
   <div class="calculator">
     <h1>{{msg}}</h1>
-    <table class="table-auto bg-gray-800 border-8 border-gray-800" cellpadding="5" cellspacing="5">
+    <table class="table-auto bg-gray-800 border-8 border-gray-800" cellpadding="5" cellspacing="5" width="220px;">
       <tr>
         <td colspan="4">
-          <div class="js-output h-20 text-white font-bold text-4xl flex items-end justify-end">{{output}}</div>
+          <div class="js-output h-20 text-white font-bold text-4xl flex items-end justify-end break-all overflow-scroll">{{output}}</div>
         </td>
       </tr>
       <tr>
-        <td><Calc methodTxt="clear" classtxt="clear" calctxt="/" btntxt="C" /></td>
-        <td><Calc methodTxt="dele" classtxt="delBtn" calctxt="/" btntxt="&LeftTriangleBar;" /></td>
-        <td><Calc calctxt="%" btntxt="&percnt;" /></td>
-        <td><Calc calctxt="/" btntxt="&divide;" /></td>
+        <td><Calc methodTxt="clear" v-on:clearClicked="clear" classtxt="js-clear" calctxt="/" btntxt="C" /></td>
+        <td><Calc methodTxt="dele" v-on:delBtnClicked="dele" classtxt="delBtn" calctxt="/" btntxt="&LeftTriangleBar;" /></td>
+        <td><Calc calctxt="%" btntxt="&percnt;" v-on:digitBtnClicked="edigit($event)" /></td>
+        <td><Calc calctxt="/" btntxt="&divide;" v-on:digitBtnClicked="edigit($event)" /></td>
       </tr>
       <tr>
-        <td><Digit btntxt="7"/></td>
-        <td><Digit btntxt="8"/></td>
-        <td><Digit btntxt="9"/></td>
-        <td><Calc btntxt="x" /></td>
+        <td><Digit btntxt="7" v-on:digitBtnClicked="edigit($event)" /></td>
+        <td><Digit btntxt="8" v-on:digitBtnClicked="edigit($event)" /></td>
+        <td><Digit btntxt="9" v-on:digitBtnClicked="edigit($event)" /></td>
+        <td><Calc btntxt="x" calctxt="x" v-on:digitBtnClicked="edigit($event)"/></td>
       </tr>
       <tr>
-        <td><Digit btntxt="4"/></td>
-        <td><Digit btntxt="5"/></td>
-        <td><Digit btntxt="6"/></td>
-        <td><Calc calctxt="-" btntxt="&minus;" /></td>
+        <td><Digit btntxt="4" v-on:digitBtnClicked="edigit($event)" /></td>
+        <td><Digit btntxt="5" v-on:digitBtnClicked="edigit($event)" /></td>
+        <td><Digit btntxt="6" v-on:digitBtnClicked="edigit($event)" /></td>
+        <td><Calc calctxt="-" btntxt="&minus;" v-on:digitBtnClicked="edigit($event)" /></td>
       </tr>
       <tr>
-        <td><Digit btntxt="1"/></td>
-        <td><Digit btntxt="2"/></td>
-        <td><Digit btntxt="3"/></td>
-        <td><Calc calctxt="+" btntxt="&plus;" /></td>
+        <td><Digit btntxt="1" v-on:digitBtnClicked="edigit($event)" /></td>
+        <td><Digit btntxt="2" v-on:digitBtnClicked="edigit($event)" /></td>
+        <td><Digit btntxt="3" v-on:digitBtnClicked="edigit($event)" /></td>
+        <td><Calc calctxt="+" btntxt="&plus;" v-on:digitBtnClicked="edigit($event)"/></td>
       </tr>
       <tr>
-        <td colspan="2"><Digit btntxt="0"/></td>
-        <td><Digit btntxt="&middot;"/></td>
-        <td><Calc methodTxt="result" btntxt="&equals;" /></td>
+        <td colspan="2"><Digit btntxt="0" v-on:digitBtnClicked="edigit($event)" /></td>
+        <td><Digit btntxt="&middot;" calctxt="." v-on:digitBtnClicked="edigit($event)"/></td>
+        <td><Calc methodTxt="result" v-on:resultBtnClicked="result" btntxt="&equals;"  /></td>
       </tr>
     </table>
   </div>
@@ -54,12 +54,13 @@ export default {
   },
   data(){
     return{
-      output:'23980'
+      output:'0'
     }
   },
   methods:{
     result:function(){
-      // console.log(this.output,typeof this.output,this.output.length);
+      debugger
+      console.log(this.output,typeof this.output,this.output.length);
       if(typeof this.output !=='undefined' && (this.output.indexOf('x')!==-1 || this.output.indexOf('%')!==-1)){
         this.output = this.output.replace('x','*').replace('%','/100');
       }
@@ -81,6 +82,7 @@ export default {
     },
     edigit: function(d){
       // console.log(d,typeof d);
+      console.dir(d);
       this.output = this.output==0?d:this.output+d;
     }
   }
@@ -109,7 +111,7 @@ table{
     padding: 10px 0;
     text-decoration: underline;
   }
-  .output{
+  /*.output{
     min-height: 100px;
     border: 1px solid #f0f;
     color: #fff;
@@ -118,6 +120,6 @@ table{
     align-items: end;
     justify-content: end;
     font-size: 40px;
-  }
+  }*/
 }
 </style>
