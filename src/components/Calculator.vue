@@ -1,54 +1,101 @@
 <template>
   <div class="hello">
     <table class="table-auto">
-      <tr>
+     <tr>
         <td colspan="4" class="title" >{{msg}}</td>
       </tr>
+    </table>
+    <table class="table-auto bg-gray-900 border-8 border-gray-900">
       <tr>
-        <td colspan="4" class="js-output">{{output}}</td>
+        <td colspan="4" class="text-white text-4xl text-left py-5 px-3">{{output}}</td>
       </tr>
       <tr>
-        <td class="clear" v-on:click="clear">C</td>
-        <td class="delBtn" v-on:click="dele">&LeftTriangleBar;</td>
-        <td  v-on:click="calc('%')">&percnt;</td>
-        <td  v-on:click="calc('/')">&divide;</td>
+        <td>
+          <button v-on:click="clear" :class="[cssCls]">C</button>
+        </td>
+        <td>
+          <button v-on:click="dele" :class="[cssCls]">&LeftTriangleBar;</button>
+        </td>
+        <td>
+          <calcbtn txt="%" txtSymbol="&percnt;" @calcBtnPress="calc"/>
+        </td>
+        <td>
+          <calcbtn txt="/" txtSymbol="&divide;" @calcBtnPress="calc"/>
+        </td>
       </tr>
       <tr>
-        <td class="js-digitBtn-7" v-on:click="edigit('7')">7</td>
-        <td class="js-digitBtn-8" v-on:click="edigit('8')">8</td>
-        <td class="js-digitBtn-9" v-on:click="edigit('9')">9</td>
-        <td class="js-calcBtn-x" v-on:click="calc('x')">&Cross;</td>
+        <td>
+          <digitbtn digit="7" @digitPress="digit_press"/>
+        </td>
+        <td>
+          <digitbtn digit="8" @digitPress="digit_press"/>
+        </td>
+        <td>
+          <digitbtn digit="9" @digitPress="digit_press"/>
+        </td>
+        <td>
+          <calcbtn txt="x" txtSymbol="&Cross;" @calcBtnPress="calc"/>
+        </td>
       </tr>
       <tr>
-        <td class="js-digitBtn-4" v-on:click="edigit('4')">4</td>
-        <td class="js-digitBtn-5" v-on:click="edigit('5')">5</td>
-        <td class="js-digitBtn-6" v-on:click="edigit('6')">6</td>
-        <td  v-on:click="calc('-')">&minus;</td>
+        <td>
+          <digitbtn digit="4" @digitPress="digit_press"/>
+        </td>
+        <td>
+          <digitbtn digit="5" @digitPress="digit_press"/>
+        </td>
+        <td>
+          <digitbtn digit="6" @digitPress="digit_press"/>
+        </td>
+        <td>
+          <calcbtn txt="-" txtSymbol="&minus;" @calcBtnPress="calc"/>
+        </td>
       </tr>
       <tr>
-        <td class="js-digitBtn-1" v-on:click="edigit('1')">1</td>
-        <td class="js-digitBtn-2" v-on:click="edigit('2')">2</td>
-        <td class="js-digitBtn-3" v-on:click="edigit('3')">3</td>
-        <td v-on:click="calc('+')">&plus;</td>
+        <td>
+          <digitbtn digit="1" @digitPress="digit_press"/>
+        </td>
+        <td>
+          <digitbtn digit="2" @digitPress="digit_press"/>
+        </td>
+        <td>
+          <digitbtn digit="3" @digitPress="digit_press"/>
+        </td>
+        <td>
+          <calcbtn txt="+" txtSymbol="&plus;" @calcBtnPress="calc"/>
+        </td>
       </tr>
       <tr>
-        <td class="js-digitBtn-4"  v-on:click="edigit('0')" colspan="2">0</td>
-        <td v-on:click="edigit('.')">.</td>
-        <td v-on:click="result">&equals;</td>
+        <td colspan="2">
+          <digitbtn digit="0" @digitPress="digit_press"/>
+        </td>
+        <td>
+          <digitbtn digit="." @digitPress="digit_press"/>
+        </td>
+        <td>
+          <button v-on:click="result" :class="[cssCls]">&equals;</button>
+        </td>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
+import calcbtn from './calcbtn.vue';
+import digitbtn from './digit.vue';
 export default {
   name: 'Calculator',
-  props: {
+  components:{
+    digitbtn,
+    calcbtn
+  },
+  props:{
     msg: String
   },
   data(){
     return{
-      output:'0'
+      output:'0000000',
+      cssCls:["rounded-full", "border", "border-grey-500", "bg-gray-500", "w-11", "h-10", "text-white"]
     }
   },
   methods:{
@@ -76,6 +123,10 @@ export default {
     edigit: function(d){
       // console.log(d,typeof d);
       this.output = this.output==0?d:this.output+d;
+    },
+    digit_press: function(d){
+      console.log('dddddd',d);
+      this.output = this.output==0?d:this.output+d;
     }
   }
 }
@@ -90,10 +141,14 @@ table{
   // overflow: hidden;
   border-collapse: collapse;
   td{
-    border: 1px solid rgba(0,0,0,0.8);
-    height: 35px;
-    &:not(.output){
+    // border: 1px solid rgba(0,0,0,0.8);
+    height: 50px;
+    width:50px;
+    &::not(.output){
       cursor: pointer;
+    }
+    &.btnbox{
+      @apply text-white;
     }
   }
   .title{
